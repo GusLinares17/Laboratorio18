@@ -17,6 +17,7 @@ public class Ejercito {
     public Ejercito(String nombre) {
         this.nombre = nombre;
         this.soldados = new ArrayList<>();
+        generarSoldados();
     }
     private void generarSoldados() {
         Random random = new Random();
