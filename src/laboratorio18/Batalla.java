@@ -3,11 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package laboratorio18;
-
 /**
  *
  * @author Gustavo
  */
+import java.util.Random;
 public class Batalla {
     Ejercito ejercitoA;
     Ejercito ejercitoB;
@@ -16,7 +16,39 @@ public class Batalla {
         this.ejercitoB = ejercitoB;       
     }
     public void mostrarTablero() {
+    String[][] tablero = new String[10][10];
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            tablero[i][j] = "__";
+        }
     }
+    Random random = new Random();
+    for (Soldado soldado : ejercitoA.getSoldados()) {
+        int x, y;
+        do {
+            x = random.nextInt(10);
+            y = random.nextInt(10);
+        } while (!tablero[x][y].equals("__"));
+        tablero[x][y] = "A:" + soldado.getNombre().charAt(0) + soldado.getNombre().substring(2);
+    }
+    for (Soldado soldado : ejercitoB.getSoldados()) {
+        int x, y;
+        do {
+            x = random.nextInt(10);
+            y = random.nextInt(10);
+        } while (!tablero[x][y].equals("__"));
+        tablero[x][y] = "B:" + soldado.getNombre().charAt(0) + soldado.getNombre().substring(2);
+    }
+    System.out.println("\nTablero:");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            System.out.printf("%-8s", tablero[i][j]);
+        }
+        System.out.println();
+    }
+    System.out.println();
+}
+    
     public void mostrarDatosSoldados() {
         System.out.println("Datos de Ejercito " + ejercitoA.nombre);
         mostrarSoldadosPorTipo(ejercitoA);
