@@ -26,9 +26,9 @@ public class Ejercito {
             int tipoSoldado = random.nextInt(3);
             Soldado soldado;
             switch (tipoSoldado) {
-                case 0 : soldado = new Espadachin(nombre + ":E" + (i + 1));
-                case 1 :  soldado = new Arquero(nombre + ":A" + (i + 1));
-                default : soldado = new Caballero(nombre + ":C" + (i + 1));
+                case 0 : soldado = new Espadachin(nombre + ":E" + (i + 1));break;
+                case 1 :  soldado = new Arquero(nombre + ":A" + (i + 1));break;
+                default : soldado = new Caballero(nombre + ":C" + (i + 1));break;
             }
             soldados.add(soldado);
         }

@@ -15,6 +15,15 @@ public class Batalla {
         this.ejercitoA = ejercitoA;
         this.ejercitoB = ejercitoB;       
     }
+    public void mostrarResumenBatalla() {
+        mostrarTablero();
+        mostrarDatosSoldados();
+        mostrarMayorVida();
+        mostrarPromedioVida();
+        mostrarOrdenadosPorCreacion();
+        mostrarOrdenadosPorVida();
+        determinarGanador();
+    }
     public void mostrarTablero() {
     String[][] tablero = new String[10][10];
     for (int i = 0; i < 10; i++) {
@@ -29,7 +38,7 @@ public class Batalla {
             x = random.nextInt(10);
             y = random.nextInt(10);
         } while (!tablero[x][y].equals("__"));
-        tablero[x][y] = "A:" + soldado.getNombre().charAt(0) + soldado.getNombre().substring(2);
+        tablero[x][y] = soldado.getNombre();
     }
     for (Soldado soldado : ejercitoB.getSoldados()) {
         int x, y;
@@ -37,7 +46,7 @@ public class Batalla {
             x = random.nextInt(10);
             y = random.nextInt(10);
         } while (!tablero[x][y].equals("__"));
-        tablero[x][y] = "B:" + soldado.getNombre().charAt(0) + soldado.getNombre().substring(2);
+        tablero[x][y] = soldado.getNombre();
     }
     System.out.println("\nTablero:");
     for (int i = 0; i < 10; i++) {
@@ -47,12 +56,11 @@ public class Batalla {
         System.out.println();
     }
     System.out.println();
-}
-    
+}    
     public void mostrarDatosSoldados() {
         System.out.println("Datos de Ejercito " + ejercitoA.nombre);
         mostrarSoldadosPorTipo(ejercitoA);
-        System.out.println("Datos de Ejercito " + ejercitoB.nombre);
+        System.out.println("\nDatos de Ejercito " + ejercitoB.nombre);
         mostrarSoldadosPorTipo(ejercitoB);
     }
     private void mostrarSoldadosPorTipo(Ejercito ejercito) {
@@ -72,19 +80,11 @@ public class Batalla {
             }
         }
     }
-    public void mostrarResumenBatalla() {
-        mostrarDatosSoldados();
-        mostrarMayorVida();
-        mostrarPromedioVida();
-        mostrarOrdenadosPorCreacion();
-        mostrarOrdenadosPorVida();
-        determinarGanador();
-    }
     private void mostrarMayorVida() {
         Soldado mayorVidaA = obtenerMayorVida(ejercitoA);
         Soldado mayorVidaB = obtenerMayorVida(ejercitoB);
 
-        System.out.println("Soldado con mayor vida de Ejercito A: " + mayorVidaA.getNombre() + " Vida: " + mayorVidaA.getVida());
+        System.out.println("\nSoldado con mayor vida de Ejercito A: " + mayorVidaA.getNombre() + " Vida: " + mayorVidaA.getVida());
         System.out.println("Soldado con mayor vida de Ejercito B: " + mayorVidaB.getNombre() + " Vida: " + mayorVidaB.getVida());
     }
     private Soldado obtenerMayorVida(Ejercito ejercito) {
@@ -97,11 +97,11 @@ public class Batalla {
         return mayor;
     }
     private void mostrarPromedioVida() {
-        System.out.printf("Promedio de vida de Ejercito A: %.2f\n", ejercitoA.promedioVida());
+        System.out.printf("\nPromedio de vida de Ejercito A: %.2f\n", ejercitoA.promedioVida());
         System.out.printf("Promedio de vida de Ejercito B: %.2f\n", ejercitoB.promedioVida());
     }
     private void mostrarOrdenadosPorCreacion() {
-        System.out.println("Orden de creacion Ejercito A:");
+        System.out.println("\nOrden de creacion Ejercito A:");
         for (Soldado s : ejercitoA.getSoldados()) {
             System.out.println(s.getNombre() + " Vida: " + s.getVida());
         }
@@ -111,7 +111,7 @@ public class Batalla {
         }
     }
     private void mostrarOrdenadosPorVida() {
-        System.out.println("Soldados de Ejercito A ordenados por vida:");
+        System.out.println("\nSoldados de Ejercito A ordenados por vida:");
         ordenarPorVida(ejercitoA);
         for (Soldado s : ejercitoA.getSoldados()) {
             System.out.println(s.getNombre() + " Vida: " + s.getVida());
@@ -135,7 +135,7 @@ public class Batalla {
     }
     private void determinarGanador() {
         String ganador = ejercitoA.promedioVida() > ejercitoB.promedioVida() ? ejercitoA.nombre : ejercitoB.nombre;
-        System.out.println("El ganador de la batalla es: " + ganador);
+        System.out.println("\nEl ganador de la batalla es: " + ganador);
     }
 }
 

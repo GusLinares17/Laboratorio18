@@ -14,7 +14,6 @@ public class Main {
         Ejercito ejercitoB = new Ejercito("B");
 
         Batalla batalla = new Batalla(ejercitoA, ejercitoB);
-        batalla.mostrarTablero();
         batalla.mostrarResumenBatalla();
     }
 }
